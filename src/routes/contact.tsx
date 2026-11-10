@@ -79,10 +79,10 @@ function Contact() {
               </div>
             </fieldset>
             <div className="grid gap-7 md:grid-cols-2">
-              <label className="block text-sm">Name<input name="name" autoComplete="name" maxLength={100} aria-invalid={!!errors.name} aria-describedby="name-err" className={field} />{err("name")}</label>
-              <label className="block text-sm">Email<input name="email" type="email" autoComplete="email" maxLength={255} aria-invalid={!!errors.email} aria-describedby="email-err" className={field} />{err("email")}</label>
+              <label className="block text-sm">Name<input name="name" autoComplete="name" maxLength={100} aria-invalid={!!errors["name"]} aria-describedby="name-err" className={field} />{err("name")}</label>
+              <label className="block text-sm">Email<input name="email" type="email" autoComplete="email" maxLength={255} aria-invalid={!!errors["email"]} aria-describedby="email-err" className={field} />{err("email")}</label>
             </div>
-            <label className="block text-sm">Message<textarea name="message" rows={6} maxLength={2000} aria-invalid={!!errors.message} aria-describedby="message-err" className={field} />{err("message")}</label>
+            <label className="block text-sm">Message<textarea name="message" rows={6} maxLength={2000} aria-invalid={!!errors["message"]} aria-describedby="message-err" className={field} />{err("message")}</label>
             <button type="submit" className="btn-gold">Compose email</button>
             <div aria-live="polite">
               {status === "opened" && <p className="border border-gold-soft p-4 text-sm">Your email app should now be open with your message ready. Press send there to deliver it.</p>}

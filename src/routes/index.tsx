@@ -25,7 +25,7 @@ const pillars = [
 ];
 
 function Home() {
-  const k = games[0];
+  const k = games[0]!;
   return (
     <>
       <section className="relative flex min-h-[100svh] items-end overflow-hidden">

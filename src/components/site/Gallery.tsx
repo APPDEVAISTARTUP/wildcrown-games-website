@@ -29,13 +29,13 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           </button>
         ))}
       </div>
-      {idx !== null && (
+      {idx !== null && images[idx] && (
         <div role="dialog" aria-modal="true" aria-label="Image viewer" className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/95 p-4" onClick={close}>
-          <img src={images[idx].src} alt={images[idx].alt} className="max-h-[85vh] max-w-full object-contain" onClick={(e) => e.stopPropagation()} />
+          <img src={images[idx]!.src} alt={images[idx]!.alt} className="max-h-[85vh] max-w-full object-contain" onClick={(e) => e.stopPropagation()} />
           <button autoFocus onClick={close} aria-label="Close" className="absolute right-4 top-4 p-3 text-foreground hover:text-gold"><X className="h-6 w-6" /></button>
           <button onClick={(e) => { e.stopPropagation(); step(-1); }} aria-label="Previous image" className="absolute left-2 p-3 hover:text-gold md:left-6"><ChevronLeft className="h-8 w-8" /></button>
           <button onClick={(e) => { e.stopPropagation(); step(1); }} aria-label="Next image" className="absolute right-2 p-3 hover:text-gold md:right-6"><ChevronRight className="h-8 w-8" /></button>
-          <p className="absolute bottom-5 text-xs uppercase tracking-[0.2em] text-muted-foreground">{idx + 1} / {images.length} — {images[idx].alt}</p>
+          <p className="absolute bottom-5 text-xs uppercase tracking-[0.2em] text-muted-foreground">{idx + 1} / {images.length} — {images[idx]!.alt}</p>
         </div>
       )}
     </>
