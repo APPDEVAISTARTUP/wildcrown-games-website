@@ -1,0 +1,42 @@
+import { Link } from "@tanstack/react-router";
+import { Wordmark } from "./Wordmark";
+import { activeSocials, site } from "@/data/site";
+
+export function SiteFooter() {
+  const socials = activeSocials();
+  return (
+    <footer className="border-t border-border bg-ink">
+      <div className="container-x py-20 grid gap-14 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <Wordmark className="text-2xl" />
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
+            An independent game development studio creating immersive worlds and memorable experiences.
+          </p>
+        </div>
+        <div className="md:col-span-3">
+          <p className="eyebrow mb-5">Explore</p>
+          <ul className="space-y-3 text-sm">
+            <li><Link to="/games" className="link-underline">Games</Link></li>
+            <li><Link to="/games/kaalvan" className="link-underline">KAALVAN</Link></li>
+            <li><Link to="/about" className="link-underline">Studio</Link></li>
+            <li><Link to="/news" className="link-underline">News</Link></li>
+          </ul>
+        </div>
+        <div className="md:col-span-4">
+          <p className="eyebrow mb-5">Get in touch</p>
+          <ul className="space-y-3 text-sm">
+            <li><Link to="/contact" className="link-underline">Business, publishing &amp; press</Link></li>
+            {site.email && <li><a href={`mailto:${site.email}`} className="link-underline">{site.email}</a></li>}
+            {socials.map((s) => (
+              <li key={s.label}><a href={s.url} target="_blank" rel="noreferrer" className="link-underline">{s.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="container-x flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground md:flex-row md:justify-between">
+        <p>© {new Date().getFullYear()} Wildcrown Games. All rights reserved.</p>
+        <p>KAALVAN is in development. Imagery shown is concept placeholder art.</p>
+      </div>
+    </footer>
+  );
+}
