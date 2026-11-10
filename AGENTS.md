@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Site content placeholders (email, socials, teaser URL, games) live in src/data/*.ts so editors change data, not components.
