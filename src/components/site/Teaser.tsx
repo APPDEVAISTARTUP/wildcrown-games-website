@@ -4,9 +4,9 @@ import { youtubeEmbed, type Game } from "@/data/games";
 export function Teaser({ game }: { game: Game }) {
   const embed = game.teaserUrl ? youtubeEmbed(game.teaserUrl) : null;
   return (
-    <div className="relative aspect-video w-full overflow-hidden border border-border bg-ink">
+    <div className="relative mx-auto aspect-video w-full max-w-[720px] overflow-hidden border border-border bg-ink">
       {embed ? (
-        <iframe src={embed} title={`${game.title} official teaser`} className="absolute inset-0 h-full w-full" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen />
+        <iframe src={embed} title="KAALVAN official teaser" className="absolute inset-0 h-full w-full" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen />
       ) : (
         // Shown until teaserUrl is set in src/data/games.ts
         <>

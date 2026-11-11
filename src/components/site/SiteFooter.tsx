@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Wordmark } from "./Wordmark";
-import { activeSocials, site } from "@/data/site";
+import { site } from "@/data/site";
+import { SocialLinks } from "./SocialLinks";
 
 export function SiteFooter() {
-  const socials = activeSocials();
   return (
     <footer className="border-t border-border bg-ink">
       <div className="container-x py-20 grid gap-14 md:grid-cols-12">
@@ -27,10 +27,8 @@ export function SiteFooter() {
           <ul className="space-y-3 text-sm">
             <li><Link to="/contact" className="link-underline">Business, publishing &amp; press</Link></li>
             {site.email && <li><a href={`mailto:${site.email}`} className="link-underline">{site.email}</a></li>}
-            {socials.map((s) => (
-              <li key={s.label}><a href={s.url} target="_blank" rel="noreferrer" className="link-underline">{s.label}</a></li>
-            ))}
           </ul>
+          <SocialLinks className="mt-6" />
         </div>
       </div>
       <div className="container-x flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground md:flex-row md:justify-between">
