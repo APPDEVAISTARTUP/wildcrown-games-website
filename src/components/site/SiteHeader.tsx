@@ -26,11 +26,11 @@ export function SiteHeader() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${scrolled || open ? "border-b border-border bg-background/90 backdrop-blur" : ""}`}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 btn-gold">Skip to content</a>
-      <div className="container-x flex h-18 items-center justify-between py-5">
+      <div className="container-x flex h-16 items-center justify-between py-4">
         <Link to="/" aria-label="Wildcrown Games home" onClick={() => setOpen(false)}>
           <Wordmark />
         </Link>
-        <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="link-underline pb-1 text-xs font-semibold uppercase tracking-[0.26em] text-foreground/80 hover:text-foreground" activeProps={{ className: "text-gold" }}>
               {n.label}
@@ -42,9 +42,9 @@ export function SiteHeader() {
         </button>
       </div>
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="md:hidden h-[calc(100dvh-4.5rem)] border-t border-border bg-background container-x flex flex-col pt-10 gap-2">
+        <nav id="mobile-nav" aria-label="Mobile" className="md:hidden h-[calc(100dvh-4rem)] border-t border-border bg-background container-x flex flex-col pt-10 gap-2">
           {[{ to: "/", label: "Home" } as const, ...nav].map((n, i) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rise font-display text-5xl font-extrabold uppercase py-2 border-b border-border" style={{ animationDelay: `${i * 60}ms` }} activeProps={{ className: "text-gold" }} activeOptions={{ exact: n.to === "/" }}>
+            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rise font-display text-4xl font-extrabold uppercase py-2 border-b border-border" style={{ animationDelay: `${i * 60}ms` }} activeProps={{ className: "text-gold" }} activeOptions={{ exact: n.to === "/" }}>
               {n.label}
             </Link>
           ))}

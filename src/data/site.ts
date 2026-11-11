@@ -9,10 +9,8 @@ export const site = {
   email: "",
   // TODO: add real social URLs. Empty values are not rendered.
   socials: [
-    { label: "YouTube", url: "" },
-    { label: "Instagram", url: "" },
-    { label: "X", url: "" },
-    { label: "Discord", url: "" },
+    { label: "YouTube", url: "https://www.youtube.com/@WildcrownGames" },
+    { label: "Instagram", url: "https://www.instagram.com/wildcrowngames/" },
   ],
 };
 

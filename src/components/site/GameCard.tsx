@@ -12,7 +12,7 @@ export function GameCard({ game }: { game: Game }) {
       </div>
       <div className="flex items-end justify-between gap-6 p-6 md:p-8">
         <div>
-          <h3 className="text-5xl font-extrabold md:text-6xl">{game.title}</h3>
+          <h3 className="text-4xl font-extrabold md:text-4xl">{game.title}</h3>
           <p className="mt-3 text-xs uppercase tracking-[0.24em] text-muted-foreground">{game.genre} · {game.engine}</p>
         </div>
         <ArrowUpRight className="h-7 w-7 shrink-0 text-gold transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
