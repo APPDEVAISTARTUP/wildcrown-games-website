@@ -35,7 +35,7 @@ export const games: Game[] = [
     summary:
       "An upcoming first-person horror game inspired by Indian folklore, ancient mysteries and occult traditions. Explore forgotten places, solve what they conceal, and survive an unknown entity.",
     cover: corridor,
-    teaserUrl: "",
+    teaserUrl: "https://youtu.be/9wL7YmDBcQ0?si=A8RBPbfVSvDkaEwb",
     teaserNote: "Official teaser — November 10, 2026",
     // TODO: replace with real KAALVAN screenshots. Set placeholder:false for real in-game captures.
     gallery: [
@@ -51,5 +51,5 @@ export const getGame = (slug: string) => games.find((g) => g.slug === slug);
 
 export function youtubeEmbed(url: string): string | null {
   const m = url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
-  return m ? `https://www.youtube-nocookie.com/embed/${m[1]}` : null;
+  return m ? `https://www.youtube.com/embed/${m[1]}` : null;
 }

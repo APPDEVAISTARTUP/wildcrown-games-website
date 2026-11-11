@@ -62,8 +62,8 @@ function Contact() {
   return (
     <>
       <PageHero eyebrow="Contact" title="Start a conversation">For business, publishing, press and general enquiries.</PageHero>
-      <section className="py-20 md:py-28">
-        <div className="container-x grid gap-16 lg:grid-cols-12">
+      <section className="py-20 md:py-20">
+        <div className="container-x grid gap-12 lg:grid-cols-12">
           <aside className="lg:col-span-4 space-y-8">
             {[["Business", "Partnerships and collaborations."], ["Publishing", "Publishing and distribution discussions for KAALVAN and future titles."], ["Press", "Interviews, previews and media assets."], ["General", "Everything else."]].map(([t, d]) => (
               <div key={t} className="border-l border-gold-soft pl-5"><h2 className="text-2xl font-extrabold">{t}</h2><p className="mt-1 text-sm text-muted-foreground">{d}</p></div>

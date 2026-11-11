@@ -15,7 +15,7 @@ export function Teaser({ game }: { game: Game }) {
           <div className="relative flex h-full flex-col items-center justify-center gap-5 text-center px-6">
             <span className="flex h-16 w-16 items-center justify-center rounded-full border border-gold-soft text-gold md:h-20 md:w-20"><Play className="h-6 w-6 translate-x-0.5" /></span>
             <p className="eyebrow">Teaser</p>
-            <p className="font-display text-3xl font-extrabold uppercase md:text-5xl">{game.teaserNote}</p>
+            <p className="font-display text-3xl font-extrabold uppercase md:text-4xl">{game.teaserNote}</p>
             <p className="text-sm text-muted-foreground">The player will appear here once the official link is published.</p>
           </div>
         </>
