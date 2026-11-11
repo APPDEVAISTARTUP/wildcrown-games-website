@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-ink">
       <div className="container-x py-20 grid gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Wordmark className="text-2xl" />
+          <Wordmark className="text-2xl" emblemClassName="h-12 w-14" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
             An independent game development studio creating immersive worlds and memorable experiences.
           </p>
