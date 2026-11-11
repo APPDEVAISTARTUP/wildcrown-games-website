@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { z } from "zod";
 import { PageHero } from "@/components/site/PageHero";
-import { site } from "@/data/site";
 import { SocialLinks } from "@/components/site/SocialLinks";
+import { contactCategories, contactEnquirySchema } from "@/lib/contact-enquiry.schema";
+import { submitContactEnquiry } from "@/lib/contact-enquiry.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -20,41 +20,36 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const categories = ["Business", "Publishing", "Press", "General"] as const;
-
-const schema = z.object({
-  name: z.string().trim().min(1, "Please enter your name").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  category: z.enum(categories),
-  message: z.string().trim().min(10, "Message should be at least 10 characters").max(2000),
-});
-
-/**
- * No backend is connected. On submit, this opens the visitor's email app with a
- * pre-filled message to site.email (src/data/site.ts). Until that email is set,
- * the form explains it is not yet configured. To send server-side instead,
- * enable Lovable Cloud and an email integration.
- */
 function Contact() {
-  const [category, setCategory] = useState<(typeof categories)[number]>("Business");
+  const [category, setCategory] = useState<(typeof contactCategories)[number]>("Business");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "opened" | "unconfigured">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "accepted" | "unconfigured" | "rate-limited" | "failed">("idle");
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const r = schema.safeParse({ name: fd.get("name"), email: fd.get("email"), category, message: fd.get("message") });
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const r = contactEnquirySchema.safeParse({
+      name: fd.get("name"),
+      email: fd.get("email"),
+      category,
+      message: fd.get("message"),
+      company: fd.get("company") ?? "",
+    });
     if (!r.success) {
       setErrors(Object.fromEntries(r.error.issues.map((i) => [String(i.path[0]), i.message])));
       setStatus("idle");
       return;
     }
     setErrors({});
-    if (!site.email) { setStatus("unconfigured"); return; }
-    const subject = encodeURIComponent(`[${r.data.category}] Enquiry from ${r.data.name}`);
-    const body = encodeURIComponent(`${r.data.message}\n\n— ${r.data.name} (${r.data.email})`);
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-    setStatus("opened");
+    setStatus("sending");
+    try {
+      const result = await submitContactEnquiry({ data: r.data });
+      setStatus(result.status);
+      if (result.status === "accepted") form.reset();
+    } catch {
+      setStatus("failed");
+    }
   }
 
   const field = "mt-2 w-full border border-input bg-transparent px-4 py-3.5 text-foreground placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none";
@@ -75,7 +70,7 @@ function Contact() {
             <fieldset>
               <legend className="eyebrow">Enquiry type</legend>
               <div className="mt-4 flex flex-wrap gap-2">
-                {categories.map((c) => (
+                {contactCategories.map((c) => (
                   <button type="button" key={c} aria-pressed={category === c} onClick={() => setCategory(c)} className={`border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] transition-colors ${category === c ? "border-gold bg-gold text-primary-foreground" : "border-input hover:border-gold"}`}>{c}</button>
                 ))}
               </div>
@@ -85,10 +80,17 @@ function Contact() {
               <label className="block text-sm">Email<input name="email" type="email" autoComplete="email" maxLength={255} aria-invalid={!!errors["email"]} aria-describedby="email-err" className={field} />{err("email")}</label>
             </div>
             <label className="block text-sm">Message<textarea name="message" rows={6} maxLength={2000} aria-invalid={!!errors["message"]} aria-describedby="message-err" className={field} />{err("message")}</label>
-            <button type="submit" className="btn-gold">Compose email</button>
+            <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+              <label>Leave this field empty<input name="company" type="text" tabIndex={-1} autoComplete="off" /></label>
+            </div>
+            <button type="submit" className="btn-gold" disabled={status === "sending"}>
+              {status === "sending" ? "Sending…" : "Send enquiry"}
+            </button>
             <div aria-live="polite">
-              {status === "opened" && <p className="border border-gold-soft p-4 text-sm">Your email app should now be open with your message ready. Press send there to deliver it.</p>}
-              {status === "unconfigured" && <p className="border border-destructive/60 p-4 text-sm">Your message looks good, but the studio's contact address hasn't been set up yet, so nothing was sent. Please check back soon.</p>}
+              {status === "accepted" && <p className="border border-gold-soft p-4 text-sm">Your enquiry has been sent to Wildcrown Games. Thank you for getting in touch.</p>}
+              {status === "unconfigured" && <p className="border border-destructive/60 p-4 text-sm">The contact form is temporarily unavailable. Please try again later.</p>}
+              {status === "rate-limited" && <p className="border border-destructive/60 p-4 text-sm">Too many enquiries were sent from this connection. Please wait a few minutes and try again.</p>}
+              {status === "failed" && <p className="border border-destructive/60 p-4 text-sm">We couldn’t send your enquiry. Please try again in a few minutes.</p>}
             </div>
           </form>
         </div>

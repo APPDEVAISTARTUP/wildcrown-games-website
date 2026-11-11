@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import hero from "@/assets/hero-temple.jpg";
 import { games } from "@/data/games";
+import { GameCard } from "@/components/site/GameCard";
 import { WishlistButton, FollowBand } from "@/components/site/Wishlist";
 import { Teaser } from "@/components/site/Teaser";
 
@@ -9,9 +10,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Wildcrown Games — We Create Worlds" },
-      { name: "description", content: "Wildcrown Games is an independent game development studio creating immersive worlds. Now developing KAALVAN, a first-person horror game in Unreal Engine 5." },
+      { name: "description", content: "Wildcrown Games is an independent game development studio creating immersive worlds, including KAALVAN and upcoming story-driven survival game TWO — THE SIDES." },
       { property: "og:title", content: "Wildcrown Games — We Create Worlds" },
-      { property: "og:description", content: "Wildcrown Games is an independent game development studio creating immersive worlds. Now developing KAALVAN, a first-person horror game in Unreal Engine 5." },
+      { property: "og:description", content: "Wildcrown Games is an independent game development studio creating immersive worlds, including KAALVAN and upcoming story-driven survival game TWO — THE SIDES." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
     ],
@@ -72,6 +73,21 @@ function Home() {
                 <Link to="/games/kaalvan" className="btn-line">Discover KAALVAN <ArrowRight className="h-4 w-4" /></Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="upcoming-games" className="border-y border-border bg-ink py-16 md:py-24">
+        <div className="container-x">
+          <div className="mb-10 flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow">Wildcrown Games</p>
+              <h2 id="upcoming-games" className="mt-4 text-4xl font-extrabold md:text-6xl">Upcoming games</h2>
+            </div>
+            <Link to="/games" className="btn-line">View all games <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {games.map((game) => <GameCard key={game.slug} game={game} />)}
           </div>
         </div>
       </section>

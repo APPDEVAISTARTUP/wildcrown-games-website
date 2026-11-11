@@ -1,0 +1,8 @@
+project_id = "wildcrown-games-website"
+
+[auth]
+site_url = "https://wildcrown.games"
+additional_redirect_urls = ["http://localhost:3000", "https://wildcrown.games/**"]
+
+[functions.kaalvan-wishlist]
+verify_jwt = false

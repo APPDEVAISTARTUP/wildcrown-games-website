@@ -14,4 +14,12 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it("matches the TWO — THE SIDES detail page", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+
+    const matches = router.matchRoutes("/games/two-the-sides");
+
+    expect(matches.at(-1)?.routeId).toBe("/games/two-the-sides");
+  });
 });

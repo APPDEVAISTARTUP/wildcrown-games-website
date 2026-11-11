@@ -109,7 +109,7 @@ function KaalvanPage() {
         <div className="container-x">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
             <h2 id="gallery" className="text-3xl font-extrabold md:text-4xl">Gallery</h2>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Concept placeholders — not in-game footage</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Five in-game screenshots</p>
           </div>
           <Gallery images={g.gallery} />
         </div>
