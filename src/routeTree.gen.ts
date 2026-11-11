@@ -16,6 +16,7 @@ import { Route as NewsRouteImport } from './routes/news'
 import { Route as AdminWishlistsRouteImport } from './routes/admin.wishlists'
 import { Route as GamesIndexRouteImport } from './routes/games.index'
 import { Route as GamesKaalvanRouteImport } from './routes/games.kaalvan'
+import { Route as GamesTwoTheSidesRouteImport } from './routes/games.two-the-sides'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const GamesKaalvanRoute = GamesKaalvanRouteImport.update({
   path: '/games/kaalvan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamesTwoTheSidesRoute = GamesTwoTheSidesRouteImport.update({
+  id: '/games/two-the-sides',
+  path: '/games/two-the-sides',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRoute
   '/admin/wishlists': typeof AdminWishlistsRoute
   '/games/kaalvan': typeof GamesKaalvanRoute
+  '/games/two-the-sides': typeof GamesTwoTheSidesRoute
   '/games/': typeof GamesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRoute
   '/admin/wishlists': typeof AdminWishlistsRoute
   '/games/kaalvan': typeof GamesKaalvanRoute
+  '/games/two-the-sides': typeof GamesTwoTheSidesRoute
   '/games': typeof GamesIndexRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/news': typeof NewsRoute
   '/admin/wishlists': typeof AdminWishlistsRoute
   '/games/kaalvan': typeof GamesKaalvanRoute
+  '/games/two-the-sides': typeof GamesTwoTheSidesRoute
   '/games/': typeof GamesIndexRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/admin/wishlists'
     | '/games/kaalvan'
+    | '/games/two-the-sides'
     | '/games/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/admin/wishlists'
     | '/games/kaalvan'
+    | '/games/two-the-sides'
     | '/games'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/admin/wishlists'
     | '/games/kaalvan'
+    | '/games/two-the-sides'
     | '/games/'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRoute
   AdminWishlistsRoute: typeof AdminWishlistsRoute
   GamesKaalvanRoute: typeof GamesKaalvanRoute
+  GamesTwoTheSidesRoute: typeof GamesTwoTheSidesRoute
   GamesIndexRoute: typeof GamesIndexRoute
 }
 
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamesKaalvanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/games/two-the-sides': {
+      id: '/games/two-the-sides'
+      path: '/games/two-the-sides'
+      fullPath: '/games/two-the-sides'
+      preLoaderRoute: typeof GamesTwoTheSidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRoute,
   AdminWishlistsRoute: AdminWishlistsRoute,
   GamesKaalvanRoute: GamesKaalvanRoute,
+  GamesTwoTheSidesRoute: GamesTwoTheSidesRoute,
   GamesIndexRoute: GamesIndexRoute,
 }
 export const routeTree = rootRouteImport

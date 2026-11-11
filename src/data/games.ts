@@ -7,23 +7,27 @@ import hallScreenshot from "@/assets/kaalvan-d_hall.png";
 import stambhaScreenshot from "@/assets/kaalvan-e_stambha.png";
 import ringsScreenshot from "@/assets/kaalvan-g_rings.png";
 import echoScreenshot from "@/assets/kaalvan-h_echo.png";
+import twoTheSidesArt from "@/assets/two-the-sides-key-art.svg";
 
 export type GalleryImage = { src: string; alt: string; placeholder: boolean };
 
 export type Game = {
   slug: string;
+  detailRoute: "/games/kaalvan" | "/games/two-the-sides";
   title: string;
   tagline: string;
   genre: string;
-  engine: string;
+  engine?: string;
   status: string;
   summary: string;
   cover: string;
+  coverAlt?: string;
+  coverLabel?: string;
   /** TODO: paste the official YouTube teaser URL (watch or youtu.be link). Empty = placeholder panel. */
-  teaserUrl: string;
-  teaserNote: string;
+  teaserUrl?: string;
+  teaserNote?: string;
   /** Wishlist store page. Empty url = CTA shows "Wishlist opening soon" (disabled). */
-  wishlist: { url: string; store: string };
+  wishlist?: { url: string; store: string };
   gallery: GalleryImage[];
 };
 
@@ -34,6 +38,7 @@ export type Game = {
 export const games: Game[] = [
   {
     slug: "kaalvan",
+    detailRoute: "/games/kaalvan",
     title: "KAALVAN",
     tagline: "Something old is waiting beneath the stone.",
     genre: "First-person horror",
@@ -53,6 +58,20 @@ export const games: Game[] = [
       { src: ringsScreenshot, alt: "In-game screenshot: three glowing symbol rings mounted on a stone wall", placeholder: false },
       { src: echoScreenshot, alt: "In-game screenshot: a narrow path through dense forest at night", placeholder: false },
     ],
+  },
+  {
+    slug: "two-the-sides",
+    detailRoute: "/games/two-the-sides",
+    title: "TWO — THE SIDES",
+    tagline: "INDIA'S MOST AMBITIOUS PROJECT EVER.",
+    genre: "Story-driven zombie survival",
+    status: "UPCOMING",
+    summary:
+      "A story-driven zombie survival experience where love, loss, betrayal and survival collide. Follow a father's fight through a world devastated by an outbreak, where protecting his daughter becomes a journey of sacrifice and revenge.",
+    cover: twoTheSidesArt,
+    coverAlt: "Stylized key art of a father and daughter facing a ruined landscape; not gameplay footage",
+    coverLabel: "Stylized key art · Not gameplay footage",
+    gallery: [],
   },
 ];
 

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11171a"/>
+      <stop offset=".48" stop-color="#301b1b"/>
+      <stop offset="1" stop-color="#08090a"/>
+    </linearGradient>
+    <radialGradient id="haze" cx="0" cy="0" r="1" gradientTransform="matrix(0 540 -830 0 960 450)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9b4c32" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#2b1818" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="split" x1="960" y1="270" x2="960" y2="1040" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d28b60" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#9e3025" stop-opacity=".12"/>
+    </linearGradient>
+    <linearGradient id="leftRoad" x1="860" y1="580" x2="470" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8c604a" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#111416" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rightRoad" x1="1060" y1="580" x2="1450" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#713f3b" stop-opacity=".46"/>
+      <stop offset="1" stop-color="#111416" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="36"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .13"/></feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="soft-light"/>
+    </filter>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1920v1080H0z"/>
+  <path fill="url(#haze)" d="M0 0h1920v1080H0z"/>
+  <ellipse cx="961" cy="465" fill="#b95e42" fill-opacity=".2" filter="url(#blur)" rx="305" ry="122"/>
+  <path fill="#111719" d="M0 474 91 452l38 28 44-79 53 41 70-112 44 25 61-54 31 74 83-119 54 25 58-87 68 33 59-79 73 67 47 112 83 25 61-68 54 21 78-80 58 66 56-40 49 75 48-13 77 47 68-62 71 52 74-106 55 38 64-43 45 57 59-91 52 55 65-32 59 42 83-69 69 45 30 468H0z"/>
+  <path fill="#171a1b" d="m0 568 95-31 67 36 80-48 56 20 94-74 89 62 90-55 65 50 73-37 71 63 56-34 61 19 56-41 76 46 81-39 59 45 79-31 64 50 77-34 83 45 77-69 74 28 64-43 80 59 71-25v480H0z"/>
+  <path fill="url(#leftRoad)" d="m910 578-510 502h682L956 578z"/>
+  <path fill="url(#rightRoad)" d="m1010 578 510 502H838l126-502z"/>
+  <path d="m954 530 21 93-24 87 27 78-31 76 28 72-35 144" stroke="url(#split)" stroke-width="5" stroke-linecap="round"/>
+  <path d="m960 640-82 91 47 14-89 70 91-9-48 65 76-32M966 701l85 70-50 13 92 78-93-18 39 71-75-39" stroke="#d18c66" stroke-opacity=".34" stroke-width="3"/>
+  <path fill="#090b0c" d="m0 830 125-36 57 19 105-71 83 24 83-57 82 43 83-25 91 65 71-39 81 49 78-62 72 30 72-44 92 66 81-43 91 34 62-52 91 46 65-24v327H0z"/>
+  <path fill="#070809" d="M0 943h1920v137H0z"/>
+  <path d="M0 966h1920" stroke="#d18c66" stroke-opacity=".1" stroke-width="2"/>
+  <!-- Abstract figures suggest the story's father and daughter without depicting gameplay. -->
+  <g fill="#090a0b">
+    <path d="M859 704c0-13 10-23 23-23s23 10 23 23-10 23-23 23-23-10-23-23Z"/>
+    <path d="M851 730h62l15 126-14 81h-22l-9-71-10 71h-23l-8-81 9-126Z"/>
+    <path d="m851 747-42 83 15 10 54-68m36-25 43 75-14 12-57-61" stroke="#090a0b" stroke-width="19" stroke-linecap="round"/>
+    <path d="m876 930-28 98h22l31-85m14-13 26 98h-22l-31-85"/>
+    <path d="M942 756c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18Z"/>
+    <path d="M939 778h43l10 87-9 58h-17l-7-50-7 50h-17l-8-58 12-87Z"/>
+    <path d="m945 866-9 40 37 18 12-17-23-16 9-22"/>
+    <path d="m944 916-18 75h16l21-62m13-13 18 75h-16l-20-62"/>
+  </g>
+  <path fill="url(#split)" fill-opacity=".32" d="M952 510h16v515h-16z" filter="url(#blur)"/>
+  <path fill="#050607" fill-opacity=".37" d="M0 0h1920v1080H0z" filter="url(#grain)"/>
+  <path fill="url(#edge)" d="M0 0h1920v1080H0z" opacity=".75"/>
+  <defs>
+    <radialGradient id="edge" cx="0" cy="0" r="1" gradientTransform="matrix(0 662 -1130 0 960 491)" gradientUnits="userSpaceOnUse">
+      <stop offset=".35" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".9"/>
+    </radialGradient>
+  </defs>
+</svg>

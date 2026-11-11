@@ -4,7 +4,9 @@ import { SocialLinks } from "./SocialLinks";
 import { WishlistRegistration } from "./WishlistRegistration";
 
 export function WishlistButton({ game }: { game: Game }) {
-  const { url, store } = game.wishlist;
+  const wishlist = game.wishlist;
+  if (!wishlist) return null;
+  const { url, store } = wishlist;
   if (!url) {
     return (
       <span className="btn-gold cursor-not-allowed opacity-60" aria-disabled="true" title={`${store} wishlist page not yet live`}>

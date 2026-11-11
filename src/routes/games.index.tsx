@@ -7,9 +7,9 @@ export const Route = createFileRoute("/games/")({
   head: () => ({
     meta: [
       { title: "Games — Wildcrown Games" },
-      { name: "description", content: "Explore games from Wildcrown Games, including KAALVAN, an upcoming first-person horror game built in Unreal Engine 5." },
+      { name: "description", content: "Explore upcoming games from Wildcrown Games, including KAALVAN and TWO — THE SIDES." },
       { property: "og:title", content: "Games — Wildcrown Games" },
-      { property: "og:description", content: "Explore games from Wildcrown Games, including KAALVAN, an upcoming first-person horror game built in Unreal Engine 5." },
+      { property: "og:description", content: "Explore upcoming games from Wildcrown Games, including KAALVAN and TWO — THE SIDES." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/games" },
     ],
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/games/")({
 function GamesPage() {
   return (
     <>
-      <PageHero eyebrow="Portfolio" title="Our games">Worlds in progress. Each one built with patience and intent.</PageHero>
+      <PageHero eyebrow="Upcoming games" title="Our games">Different stories. New worlds from Wildcrown Games.</PageHero>
       <section className="py-20 md:py-20">
         <div className="container-x grid gap-8 md:grid-cols-2">
           {games.map((g) => <GameCard key={g.slug} game={g} />)}
