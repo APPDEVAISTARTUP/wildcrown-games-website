@@ -2,6 +2,11 @@ import corridor from "@/assets/kaalvan-corridor.jpg";
 import forest from "@/assets/kaalvan-forest.jpg";
 import chamber from "@/assets/kaalvan-chamber.jpg";
 import temple from "@/assets/hero-temple.jpg";
+import pillarScreenshot from "@/assets/kaalvan-c_pillar.png";
+import hallScreenshot from "@/assets/kaalvan-d_hall.png";
+import stambhaScreenshot from "@/assets/kaalvan-e_stambha.png";
+import ringsScreenshot from "@/assets/kaalvan-g_rings.png";
+import echoScreenshot from "@/assets/kaalvan-h_echo.png";
 
 export type GalleryImage = { src: string; alt: string; placeholder: boolean };
 
@@ -41,13 +46,12 @@ export const games: Game[] = [
     teaserNote: "Official teaser — November 10, 2026",
     // TODO: paste the store page URL (e.g. Steam) and store name to activate the wishlist button.
     wishlist: { url: "", store: "Steam" },
-    // TODO: add real KAALVAN gameplay screenshots here (any count works). Set placeholder:false
-    // so they're labelled as in-game captures instead of concept art.
     gallery: [
-      { src: corridor, alt: "Concept placeholder: candlelit carved temple corridor", placeholder: true },
-      { src: chamber, alt: "Concept placeholder: underground chamber with ritual circle", placeholder: true },
-      { src: forest, alt: "Concept placeholder: banyan forest in fog at night", placeholder: true },
-      { src: temple, alt: "Concept placeholder: temple ruins at dusk", placeholder: true },
+      { src: pillarScreenshot, alt: "In-game screenshot: carved stone pillars inside a misty temple hall", placeholder: false },
+      { src: hallScreenshot, alt: "In-game screenshot: a dim carved temple hall filled with fog", placeholder: false },
+      { src: stambhaScreenshot, alt: "In-game screenshot: an ornate stone stambha in a shadowed courtyard", placeholder: false },
+      { src: ringsScreenshot, alt: "In-game screenshot: three glowing symbol rings mounted on a stone wall", placeholder: false },
+      { src: echoScreenshot, alt: "In-game screenshot: a narrow path through dense forest at night", placeholder: false },
     ],
   },
 ];
