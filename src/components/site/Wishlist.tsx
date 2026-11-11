@@ -7,7 +7,7 @@ export function WishlistButton({ game }: { game: Game }) {
   if (!url) {
     return (
       <span className="btn-gold cursor-not-allowed opacity-60" aria-disabled="true" title="Store page not yet live">
-        <Heart className="h-4 w-4" aria-hidden /> Wishlist opening soon
+        <Heart className="h-4 w-4" aria-hidden /> Wishlist link coming soon
       </span>
     );
   }
