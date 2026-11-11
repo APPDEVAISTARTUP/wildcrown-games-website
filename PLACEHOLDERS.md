@@ -3,8 +3,8 @@
 | Item | Where |
 |---|---|
 | Studio email (enables contact form + footer link) | `src/data/site.ts` → `email` |
-| Social URLs (YouTube, Instagram, X, Discord) — empty ones are hidden | `src/data/site.ts` → `socials` |
-| Official KAALVAN teaser YouTube URL | `src/data/games.ts` → `teaserUrl` |
+| Social URLs — empty ones are hidden | `src/data/site.ts` → `socials` |
+| Wishlist store link (activates the wishlist buttons) | `src/data/games.ts` → `wishlist` |
 | Real KAALVAN screenshots / key art (set `placeholder: false`) | `src/assets/*`, `src/data/games.ts` → `gallery`, `cover` |
 | Final logo / wordmark | `src/components/site/Wordmark.tsx`, `public/favicon.png` |
 | Production domain (for absolute og:url / og:image) | route `head()` in `src/routes/*` |

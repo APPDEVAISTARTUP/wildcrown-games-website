@@ -17,6 +17,8 @@ export type Game = {
   /** TODO: paste the official YouTube teaser URL (watch or youtu.be link). Empty = placeholder panel. */
   teaserUrl: string;
   teaserNote: string;
+  /** Wishlist store page. Empty url = CTA shows "Wishlist opening soon" (disabled). */
+  wishlist: { url: string; store: string };
   gallery: GalleryImage[];
 };
 
@@ -37,7 +39,10 @@ export const games: Game[] = [
     cover: corridor,
     teaserUrl: "https://youtu.be/9wL7YmDBcQ0?si=A8RBPbfVSvDkaEwb",
     teaserNote: "Official teaser — November 10, 2026",
-    // TODO: replace with real KAALVAN screenshots. Set placeholder:false for real in-game captures.
+    // TODO: paste the store page URL (e.g. Steam) and store name to activate the wishlist button.
+    wishlist: { url: "", store: "Steam" },
+    // TODO: add real KAALVAN gameplay screenshots here (any count works). Set placeholder:false
+    // so they're labelled as in-game captures instead of concept art.
     gallery: [
       { src: corridor, alt: "Concept placeholder: candlelit carved temple corridor", placeholder: true },
       { src: chamber, alt: "Concept placeholder: underground chamber with ritual circle", placeholder: true },

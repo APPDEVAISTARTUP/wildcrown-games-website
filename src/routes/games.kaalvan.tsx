@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { getGame } from "@/data/games";
 import { Teaser } from "@/components/site/Teaser";
 import { Gallery } from "@/components/site/Gallery";
+import { WishlistButton, FollowBand } from "@/components/site/Wishlist";
 import forest from "@/assets/kaalvan-forest.jpg";
 import chamber from "@/assets/kaalvan-chamber.jpg";
 
@@ -42,6 +43,10 @@ function KaalvanPage() {
               <div key={k} className="bg-ink/80 p-4"><dt className="eyebrow text-[0.6rem]">{k}</dt><dd className="mt-2 text-sm font-semibold">{v}</dd></div>
             ))}
           </dl>
+          <div className="rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: "480ms" }}>
+            <WishlistButton game={g} />
+            <a href="#teaser" className="btn-line">Watch teaser</a>
+          </div>
         </div>
       </section>
 
@@ -54,6 +59,17 @@ function KaalvanPage() {
               KAALVAN is a first-person horror game being developed in Unreal Engine 5, inspired by Indian folklore, ancient mysteries, occult themes and the supernatural. Its direction centres on exploration, puzzles and survival — and on a presence no one can name. Development is well advanced and the team is now focused on polish.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="glance" className="pb-16 md:pb-20">
+        <div className="container-x">
+          <h2 id="glance" className="eyebrow mb-6">At a glance</h2>
+          <dl className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {[["Perspective", "First-person"], ["Inspired by", "Indian folklore & the occult"], ["Core play", "Exploration · Puzzles · Survival"], ["Developer", "Wildcrown Games"]].map(([k, v]) => (
+              <div key={k} className="bg-background p-6"><dt className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{k}</dt><dd className="mt-3 font-display text-2xl font-extrabold uppercase">{v}</dd></div>
+            ))}
+          </dl>
         </div>
       </section>
 
@@ -98,6 +114,8 @@ function KaalvanPage() {
           <Gallery images={g.gallery} />
         </div>
       </section>
+
+      <FollowBand game={g} />
 
       <section className="border-t border-border py-16 md:py-20">
         <div className="container-x flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">

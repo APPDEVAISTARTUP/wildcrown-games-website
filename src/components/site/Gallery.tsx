@@ -23,9 +23,9 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
     <>
       <div className="grid gap-3 md:grid-cols-4 md:gap-4">
         {images.map((img, i) => (
-          <button key={i} onClick={() => setIdx(i)} aria-label={`Open image ${i + 1}: ${img.alt}`} className={`group relative overflow-hidden border border-border ${i === 0 ? "md:col-span-2 md:row-span-2" : i === 3 ? "md:col-span-2" : ""}`}>
+          <button key={i} onClick={() => setIdx(i)} aria-label={`Open image ${i + 1}: ${img.alt}`} className={`group relative overflow-hidden border border-border ${i === 0 ? "md:col-span-2 md:row-span-2" : i === 3 && images.length === 4 ? "md:col-span-2" : ""}`}>
             <img src={img.src} alt={img.alt} loading="lazy" className="aspect-[16/10] h-full w-full object-cover transition duration-700 group-hover:scale-105 group-hover:opacity-90" />
-            {img.placeholder && <span className="absolute bottom-3 left-3 bg-ink/80 px-2 py-1 text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">Concept placeholder</span>}
+            <span className="absolute bottom-3 left-3 bg-ink/80 px-2 py-1 text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">{img.placeholder ? "Concept placeholder" : "In-game screenshot"}</span>
           </button>
         ))}
       </div>

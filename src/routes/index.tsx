@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import hero from "@/assets/hero-temple.jpg";
 import { games } from "@/data/games";
+import { WishlistButton, FollowBand } from "@/components/site/Wishlist";
+import { Teaser } from "@/components/site/Teaser";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,9 +67,22 @@ function Home() {
                 {[k.genre, k.engine].map((t) => (<span key={t} className="border border-gold-soft px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold">{t}</span>))}
               </div>
               <p className="mt-8 text-lg leading-relaxed text-muted-foreground">{k.summary}</p>
-              <Link to="/games/kaalvan" className="btn-gold mt-8">Discover KAALVAN <ArrowRight className="h-4 w-4" /></Link>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <WishlistButton game={k} />
+                <Link to="/games/kaalvan" className="btn-line">Discover KAALVAN <ArrowRight className="h-4 w-4" /></Link>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="home-teaser" className="pb-16 md:pb-24">
+        <div className="container-x">
+          <div className="mb-8 text-center">
+            <p className="eyebrow">Watch</p>
+            <h2 id="home-teaser" className="mt-4 text-3xl font-extrabold md:text-4xl">The KAALVAN teaser</h2>
+          </div>
+          <Teaser game={k} />
         </div>
       </section>
 
@@ -88,6 +103,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <FollowBand game={k} />
 
       <section aria-labelledby="updates" className="py-16 md:py-20">
         <div className="container-x flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
