@@ -3,10 +3,8 @@ import { z } from "zod";
 import type { Game } from "@/data/games";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { submitKaalvanWishlist } from "@/lib/wishlist-registration";
-import { TurnstileWidget } from "./TurnstileWidget";
 
-const turnstileSiteKey = import.meta.env["VITE_TURNSTILE_SITE_KEY"]?.trim() ?? "";
-const isWishlistConfigured = isSupabaseConfigured && Boolean(turnstileSiteKey);
+const isWishlistConfigured = isSupabaseConfigured;
 
 const registrationSchema = z.object({
   email: z.string().trim().email("Enter a valid email address.").max(254, "Email address is too long."),
@@ -14,14 +12,11 @@ const registrationSchema = z.object({
   company: z.string().max(200),
 });
 
-type RegistrationStatus = "idle" | "sending" | "success" | "rate-limited" | "captcha-required" | "error" | "unconfigured";
+type RegistrationStatus = "idle" | "sending" | "success" | "rate-limited" | "error" | "unconfigured";
 
 export function WishlistRegistration({ game }: { game: Game }) {
   const [status, setStatus] = useState<RegistrationStatus>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [turnstileToken, setTurnstileToken] = useState("");
-  const [turnstileError, setTurnstileError] = useState(false);
-  const [widgetVersion, setWidgetVersion] = useState(0);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,21 +39,14 @@ export function WishlistRegistration({ game }: { game: Game }) {
       setStatus("unconfigured");
       return;
     }
-    if (!turnstileToken) {
-      setStatus("captcha-required");
-      return;
-    }
 
     setStatus("sending");
     try {
-      const submitResult = await submitKaalvanWishlist({ ...parsed.data, turnstileToken });
+      const submitResult = await submitKaalvanWishlist(parsed.data);
       setStatus(submitResult);
       if (submitResult === "success") form.reset();
     } catch {
       setStatus("error");
-    } finally {
-      setTurnstileToken("");
-      setWidgetVersion((version) => version + 1);
     }
   }
 
@@ -104,29 +92,13 @@ export function WishlistRegistration({ game }: { game: Game }) {
         <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
           <label>Leave this field empty<input name="company" type="text" tabIndex={-1} autoComplete="off" /></label>
         </div>
-        {turnstileSiteKey && (
-          <div className="sm:col-span-2">
-            <TurnstileWidget
-              key={widgetVersion}
-              siteKey={turnstileSiteKey}
-              onToken={(token) => {
-                setTurnstileToken(token);
-                if (token) {
-                  setTurnstileError(false);
-                  setStatus((current) => current === "captcha-required" ? "idle" : current);
-                }
-              }}
-              onError={() => { setTurnstileToken(""); setTurnstileError(true); setStatus("error"); }}
-            />
-          </div>
-        )}
         <button type="submit" className="btn-gold sm:col-span-2" disabled={status === "sending" || !isWishlistConfigured}>
           {status === "sending" ? "Adding…" : "ADD TO WISHLIST"}
         </button>
       </form>
       <div role="status" aria-live="polite" className="mt-4 text-sm">
         {!isWishlistConfigured && (
-          <p className="border border-border p-3 text-muted-foreground">Wishlist registration will be available when Supabase and Turnstile are configured.</p>
+          <p className="border border-border p-3 text-muted-foreground">Wishlist registration will be available when Supabase is configured.</p>
         )}
         {status === "success" && (
           <p className="border border-gold-soft p-3">KAALVAN has been added to your wishlist!</p>
@@ -134,11 +106,8 @@ export function WishlistRegistration({ game }: { game: Game }) {
         {status === "rate-limited" && (
           <p className="border border-border p-3">Please wait a little while before trying again.</p>
         )}
-        {status === "captcha-required" && (
-          <p className="border border-border p-3">Complete the bot protection check to continue.</p>
-        )}
         {status === "error" && (
-          <p className="border border-destructive/60 p-3">{turnstileError ? "Bot protection could not load. Refresh the page and try again." : "We couldn’t add your wishlist entry. Please try again later."}</p>
+          <p className="border border-destructive/60 p-3">We couldn’t add your wishlist entry. Please try again later.</p>
         )}
         {status === "unconfigured" && (
           <p className="border border-border p-3 text-muted-foreground">Wishlist registration is not connected yet.</p>
