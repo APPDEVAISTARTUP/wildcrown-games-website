@@ -68,16 +68,14 @@ Deno.serve(async (request) => {
 
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const name = typeof body.name === "string" ? body.name.trim() : "";
-  const turnstileToken = typeof body.turnstileToken === "string" ? body.turnstileToken : "";
   if (body.gameSlug !== undefined && body.gameSlug !== "kaalvan") return respond({ error: "invalid_request" }, 400, origin);
   if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email)) return respond({ error: "invalid_email" }, 400, origin);
-  if (name.length > 100 || turnstileToken.length < 1 || turnstileToken.length > 2048) return respond({ error: "invalid_request" }, 400, origin);
+  if (name.length > 100) return respond({ error: "invalid_request" }, 400, origin);
 
   const projectUrl = Deno.env.get("SUPABASE_URL");
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY");
   const rateLimitSecret = Deno.env.get("RATE_LIMIT_HMAC_SECRET");
-  if (!projectUrl || !serviceRoleKey || !turnstileSecret || !rateLimitSecret) {
+  if (!projectUrl || !serviceRoleKey || !rateLimitSecret) {
     return respond({ error: "service_unavailable" }, 503, origin);
   }
   if (new TextEncoder().encode(rateLimitSecret).byteLength < 32) {
@@ -98,20 +96,6 @@ Deno.serve(async (request) => {
     });
     if (ipLimit.error) return respond({ error: "service_unavailable" }, 503, origin);
     if (ipLimit.data !== true) return respond({ error: "rate_limited" }, 429, origin);
-
-    const siteVerifyBody = new URLSearchParams({ secret: turnstileSecret, response: turnstileToken });
-    if (ip !== "unknown") siteVerifyBody.set("remoteip", ip);
-    const verifyResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: siteVerifyBody,
-    });
-    if (!verifyResponse.ok) return respond({ error: "service_unavailable" }, 503, origin);
-    const verification = await verifyResponse.json() as { success?: boolean; hostname?: string; action?: string };
-    const expectedHostname = new URL(origin).hostname;
-    if (!verification.success || verification.hostname !== expectedHostname || verification.action !== "kaalvan_wishlist") {
-      return respond({ error: "bot_check_failed" }, 400, origin);
-    }
 
     const emailKey = await hmacHex(rateLimitSecret, `email:${email}`);
     const emailLimit = await admin.rpc("consume_wishlist_rate_limit", {
