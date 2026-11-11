@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import { PageHero } from "@/components/site/PageHero";
 import { site } from "@/data/site";
+import { SocialLinks } from "@/components/site/SocialLinks";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -68,6 +69,7 @@ function Contact() {
             {[["Business", "Partnerships and collaborations."], ["Publishing", "Publishing and distribution discussions for KAALVAN and future titles."], ["Press", "Interviews, previews and media assets."], ["General", "Everything else."]].map(([t, d]) => (
               <div key={t} className="border-l border-gold-soft pl-5"><h2 className="text-2xl font-extrabold">{t}</h2><p className="mt-1 text-sm text-muted-foreground">{d}</p></div>
             ))}
+            <div><p className="eyebrow">Follow the studio</p><SocialLinks className="mt-4" /></div>
           </aside>
           <form noValidate onSubmit={submit} className="lg:col-span-8 space-y-7">
             <fieldset>
