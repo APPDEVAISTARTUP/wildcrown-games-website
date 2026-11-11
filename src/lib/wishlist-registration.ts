@@ -5,7 +5,6 @@ export type WishlistSubmissionResult = "success" | "rate-limited" | "unconfigure
 export async function submitKaalvanWishlist(input: {
   email: string;
   name: string;
-  turnstileToken: string;
   company: string;
 }): Promise<WishlistSubmissionResult> {
   const client = getSupabaseClient();
@@ -15,7 +14,6 @@ export async function submitKaalvanWishlist(input: {
     body: {
       email: input.email.trim().toLowerCase(),
       name: input.name.trim(),
-      turnstileToken: input.turnstileToken,
       company: input.company,
     },
   });
