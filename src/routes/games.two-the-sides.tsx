@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowLeft } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { getGame } from "@/data/games";
 
 export const Route = createFileRoute("/games/two-the-sides")({
@@ -22,7 +22,7 @@ function TwoTheSidesPage() {
   return (
     <>
       <section className="relative flex min-h-[88svh] items-end overflow-hidden bg-[#08090b]">
-        <img src={game.cover} alt={game.coverAlt ?? "Stylized key art, not gameplay footage"} width={1920} height={1080} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={game.heroImage ?? game.cover} alt="" aria-hidden width={1920} height={1080} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#08090b]/90 via-[#08090b]/35 to-[#08090b]/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-[#08090b]/25" />
         <div className="container-x relative pb-16 pt-32 md:pb-20">
@@ -38,7 +38,12 @@ function TwoTheSidesPage() {
           <p className="rise mt-8 max-w-2xl text-sm font-semibold uppercase leading-relaxed tracking-[0.22em] text-foreground/85 sm:text-base" style={{ animationDelay: "240ms" }}>{game.tagline}</p>
           <div className="rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: "330ms" }}>
             <a href="#story" className="btn-gold">Enter the story <ArrowDown className="h-4 w-4" /></a>
-            <Link to="/games" className="btn-line">Explore all games</Link>
+            {game.websiteUrl && (
+              <a href={game.websiteUrl} target="_blank" rel="noopener noreferrer" className="btn-line" aria-label="Explore TWO on playtwo.in (opens in a new tab)">
+                Explore TWO <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </a>
+            )}
+            <Link to="/games" className="btn-line">All games</Link>
           </div>
           <p className="mt-10 text-[0.6rem] uppercase tracking-[0.18em] text-foreground/65">{game.coverLabel}</p>
         </div>
@@ -90,7 +95,14 @@ function TwoTheSidesPage() {
             <p className="eyebrow">Upcoming game</p>
             <h2 className="mt-5 max-w-3xl text-4xl font-extrabold md:text-6xl">A father's fight.<br />A daughter's future.</h2>
           </div>
-          <Link to="/games" className="btn-line">Back to all games <ArrowLeft className="h-4 w-4" /></Link>
+          <div className="flex flex-wrap gap-4">
+            {game.websiteUrl && (
+              <a href={game.websiteUrl} target="_blank" rel="noopener noreferrer" className="btn-gold" aria-label="Explore TWO on playtwo.in (opens in a new tab)">
+                Explore TWO <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </a>
+            )}
+            <Link to="/games" className="btn-line">Back to all games <ArrowLeft className="h-4 w-4" /></Link>
+          </div>
         </div>
       </section>
     </>

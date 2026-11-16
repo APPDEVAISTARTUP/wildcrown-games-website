@@ -58,9 +58,8 @@ function Home() {
           </div>
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <Link to="/games/kaalvan" className="group relative block overflow-hidden border border-border lg:col-span-7" aria-label="View KAALVAN">
-              <img src={k.cover} alt="KAALVAN concept placeholder art: candlelit temple corridor" loading="lazy" width={1920} height={1088} className="aspect-[16/10] w-full object-cover transition-transform duration-[1.8s] group-hover:scale-105" />
+              <img src={k.cover} alt={k.coverAlt ?? k.title} loading="lazy" width={1920} height={1088} className="aspect-[16/10] w-full object-cover transition-transform duration-[1.8s] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-              <span className="absolute bottom-4 left-4 text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">Concept placeholder art</span>
             </Link>
             <div className="lg:col-span-5">
               <h2 id="featured" className="text-5xl font-black md:text-7xl">{k.title}</h2>
