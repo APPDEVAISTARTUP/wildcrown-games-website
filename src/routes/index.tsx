@@ -69,6 +69,7 @@ function Home() {
               </div>
               <p className="mt-8 text-lg leading-relaxed text-muted-foreground">{k.summary}</p>
               <div className="mt-8 flex flex-wrap gap-4">
+                {k.downloadUrl && <a href={k.downloadUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Download KAALVAN <ArrowRight className="h-4 w-4" /></a>}
                 <WishlistButton game={k} />
                 <Link to="/games/kaalvan" className="btn-line">Discover KAALVAN <ArrowRight className="h-4 w-4" /></Link>
               </div>

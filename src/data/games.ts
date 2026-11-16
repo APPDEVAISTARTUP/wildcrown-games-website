@@ -23,6 +23,7 @@ export type Game = {
   cover: string;
   coverAlt?: string;
   coverLabel?: string;
+  downloadUrl?: string;
   /** TODO: paste the official YouTube teaser URL (watch or youtu.be link). Empty = placeholder panel. */
   teaserUrl?: string;
   teaserNote?: string;
@@ -47,6 +48,7 @@ export const games: Game[] = [
     summary:
       "An upcoming first-person horror game inspired by Indian folklore, ancient mysteries and occult traditions. Explore forgotten places, solve what they conceal, and survive an unknown entity.",
     cover: corridor,
+    downloadUrl: "https://wildcrowngames.itch.io/kaalvan",
     teaserUrl: "https://youtu.be/9wL7YmDBcQ0?si=A8RBPbfVSvDkaEwb",
     teaserNote: "Official teaser — November 10, 2026",
     // TODO: paste the store page URL (e.g. Steam) and store name to activate the wishlist button.
