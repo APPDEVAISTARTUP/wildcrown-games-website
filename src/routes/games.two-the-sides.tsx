@@ -21,22 +21,19 @@ function TwoTheSidesPage() {
   const game = getGame("two-the-sides")!;
   return (
     <>
-      <section className="relative flex min-h-[88svh] items-end overflow-hidden bg-[#08090b]">
-        <img src={game.heroImage ?? game.cover} alt="" aria-hidden width={1920} height={1080} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#08090b]/90 via-[#08090b]/35 to-[#08090b]/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-[#08090b]/25" />
-        <div className="container-x relative pb-16 pt-32 md:pb-20">
-          <Link to="/games" className="mb-12 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:text-gold">
+      <section className="relative flex min-h-[88svh] flex-col justify-between overflow-hidden bg-[#08090b]">
+        <img src={game.cover} alt={game.coverAlt ?? ""} width={1672} height={941} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-top" />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background via-background/70 to-transparent" />
+        <div className="container-x relative pt-28">
+          <Link to="/games" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-gold">
             <ArrowLeft className="h-4 w-4" /> All games
           </Link>
-          <p className="eyebrow rise">Wildcrown Games presents</p>
-          <p className="rise mt-5 text-xs font-semibold uppercase tracking-[0.36em] text-[#d98b70]" style={{ animationDelay: "80ms" }}>{game.status}</p>
-          <h1 className="rise mt-5 max-w-6xl font-black leading-[0.78] tracking-[0.015em]" style={{ animationDelay: "150ms" }}>
-            <span className="block text-[5rem] sm:text-[7rem] md:text-[10rem] lg:text-[13rem]">TWO</span>
-            <span className="mt-4 block text-[2.1rem] sm:text-5xl md:text-7xl lg:text-[6.5rem]">— THE SIDES</span>
-          </h1>
-          <p className="rise mt-8 max-w-2xl text-sm font-semibold uppercase leading-relaxed tracking-[0.22em] text-foreground/85 sm:text-base" style={{ animationDelay: "240ms" }}>{game.tagline}</p>
-          <div className="rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: "330ms" }}>
+        </div>
+        <div className="container-x relative pb-12 pt-[38svh] md:pb-16">
+          <h1 className="sr-only">TWO — THE SIDES</h1>
+          <p className="eyebrow rise">Wildcrown Games presents · <span className="text-[#d98b70]">{game.status}</span></p>
+          <p className="rise mt-5 max-w-2xl text-sm font-semibold uppercase leading-relaxed tracking-[0.22em] text-foreground/90 sm:text-base" style={{ animationDelay: "120ms" }}>{game.tagline}</p>
+          <div className="rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: "240ms" }}>
             <a href="#story" className="btn-gold">Enter the story <ArrowDown className="h-4 w-4" /></a>
             {game.websiteUrl && (
               <a href={game.websiteUrl} target="_blank" rel="noopener noreferrer" className="btn-line" aria-label="Explore TWO on playtwo.in (opens in a new tab)">
@@ -45,7 +42,7 @@ function TwoTheSidesPage() {
             )}
             <Link to="/games" className="btn-line">All games</Link>
           </div>
-          <p className="mt-10 text-[0.6rem] uppercase tracking-[0.18em] text-foreground/65">{game.coverLabel}</p>
+          <p className="mt-8 text-[0.6rem] uppercase tracking-[0.18em] text-foreground/65">{game.coverLabel}</p>
         </div>
       </section>
 
@@ -60,18 +57,6 @@ function TwoTheSidesPage() {
             <h2 id="story-title" className="mt-5 max-w-4xl text-4xl font-extrabold leading-[0.95] md:text-6xl">Love, loss, betrayal and survival collide.</h2>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">{game.summary}</p>
           </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="key-art-title" className="pb-20 md:pb-28">
-        <div className="container-x">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
-            <h2 id="key-art-title" className="text-3xl font-extrabold md:text-4xl">Key art</h2>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{game.coverLabel}</p>
-          </div>
-          <figure className="overflow-hidden border border-border">
-            <img src={game.cover} alt={game.coverAlt ?? ""} loading="lazy" width={1920} height={1080} className="aspect-video w-full object-cover" />
-          </figure>
         </div>
       </section>
 

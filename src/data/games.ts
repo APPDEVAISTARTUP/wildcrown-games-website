@@ -6,7 +6,6 @@ import hallScreenshot from "@/assets/kaalvan-d_hall.png";
 import stambhaScreenshot from "@/assets/kaalvan-e_stambha.png";
 import ringsScreenshot from "@/assets/kaalvan-g_rings.png";
 import echoScreenshot from "@/assets/kaalvan-h_echo.png";
-import twoTheSidesArt from "@/assets/two-the-sides-zombie-keyart.jpg";
 import twoPoster from "@/assets/two-poster.webp";
 import kaalvanEntity from "@/assets/kaalvan-entity.jpg";
 
@@ -24,8 +23,6 @@ export type Game = {
   cover: string;
   coverAlt?: string;
   coverLabel?: string;
-  /** Optional separate background for the detail-page hero (defaults to cover). */
-  heroImage?: string;
   /** Official game website, shown as an "Explore" link. */
   websiteUrl?: string;
   downloadUrl?: string;
@@ -75,7 +72,6 @@ export const games: Game[] = [
     cover: twoPoster,
     coverAlt: "TWO key art: a lone survivor faces a ruined, rain-soaked city at night under the tagline Every day. One step closer.",
     coverLabel: "Key art · Not gameplay footage",
-    heroImage: twoTheSidesArt,
     websiteUrl: "https://www.playtwo.in/",
     gallery: [],
   },
