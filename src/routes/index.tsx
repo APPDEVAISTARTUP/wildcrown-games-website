@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import hero from "@/assets/hero-temple.jpg";
 import { games } from "@/data/games";
 import { GameCard } from "@/components/site/GameCard";
-import { WishlistButton, FollowBand } from "@/components/site/Wishlist";
+import { DownloadButton, DownloadBand } from "@/components/site/DownloadBand";
 import { Teaser } from "@/components/site/Teaser";
 
 export const Route = createFileRoute("/")({
@@ -69,8 +69,7 @@ function Home() {
               </div>
               <p className="mt-8 text-lg leading-relaxed text-muted-foreground">{k.summary}</p>
               <div className="mt-8 flex flex-wrap gap-4">
-                {k.downloadUrl && <a href={k.downloadUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Download KAALVAN <ArrowRight className="h-4 w-4" /></a>}
-                <WishlistButton game={k} />
+                <DownloadButton game={k} />
                 <Link to="/games/kaalvan" className="btn-line">Discover KAALVAN <ArrowRight className="h-4 w-4" /></Link>
               </div>
             </div>
@@ -121,7 +120,7 @@ function Home() {
         </div>
       </section>
 
-      <FollowBand game={k} />
+      <DownloadBand game={k} />
 
       <section aria-labelledby="updates" className="py-16 md:py-20">
         <div className="container-x flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">

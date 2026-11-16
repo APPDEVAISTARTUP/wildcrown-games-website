@@ -7,7 +7,7 @@ import hallScreenshot from "@/assets/kaalvan-d_hall.png";
 import stambhaScreenshot from "@/assets/kaalvan-e_stambha.png";
 import ringsScreenshot from "@/assets/kaalvan-g_rings.png";
 import echoScreenshot from "@/assets/kaalvan-h_echo.png";
-import twoTheSidesArt from "@/assets/two-the-sides-key-art.svg";
+import twoTheSidesArt from "@/assets/two-the-sides-zombie-keyart.jpg";
 
 export type GalleryImage = { src: string; alt: string; placeholder: boolean };
 
@@ -27,8 +27,6 @@ export type Game = {
   /** TODO: paste the official YouTube teaser URL (watch or youtu.be link). Empty = placeholder panel. */
   teaserUrl?: string;
   teaserNote?: string;
-  /** Wishlist store page. Empty url = CTA shows "Wishlist opening soon" (disabled). */
-  wishlist?: { url: string; store: string };
   gallery: GalleryImage[];
 };
 
@@ -51,8 +49,6 @@ export const games: Game[] = [
     downloadUrl: "https://wildcrowngames.itch.io/kaalvan",
     teaserUrl: "https://youtu.be/9wL7YmDBcQ0?si=A8RBPbfVSvDkaEwb",
     teaserNote: "Official teaser — November 10, 2026",
-    // TODO: paste the store page URL (e.g. Steam) and store name to activate the wishlist button.
-    wishlist: { url: "", store: "Steam" },
     gallery: [
       { src: pillarScreenshot, alt: "In-game screenshot: carved stone pillars inside a misty temple hall", placeholder: false },
       { src: hallScreenshot, alt: "In-game screenshot: a dim carved temple hall filled with fog", placeholder: false },
@@ -71,8 +67,8 @@ export const games: Game[] = [
     summary:
       "A story-driven zombie survival experience where love, loss, betrayal and survival collide. Follow a father's fight through a world devastated by an outbreak, where protecting his daughter becomes a journey of sacrifice and revenge.",
     cover: twoTheSidesArt,
-    coverAlt: "Stylized key art of a father and daughter facing a ruined landscape; not gameplay footage",
-    coverLabel: "Stylized key art · Not gameplay footage",
+    coverAlt: "Key art: a father shields his daughter on a burning city highway as a zombie horde closes in; not gameplay footage",
+    coverLabel: "Concept key art · Not gameplay footage",
     gallery: [],
   },
 ];

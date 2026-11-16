@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as NewsRouteImport } from './routes/news'
-import { Route as AdminWishlistsRouteImport } from './routes/admin.wishlists'
 import { Route as GamesIndexRouteImport } from './routes/games.index'
 import { Route as GamesKaalvanRouteImport } from './routes/games.kaalvan'
 import { Route as GamesTwoTheSidesRouteImport } from './routes/games.two-the-sides'
@@ -38,11 +37,6 @@ const NewsRoute = NewsRouteImport.update({
   path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminWishlistsRoute = AdminWishlistsRouteImport.update({
-  id: '/admin/wishlists',
-  path: '/admin/wishlists',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const GamesIndexRoute = GamesIndexRouteImport.update({
   id: '/games/',
   path: '/games/',
@@ -64,7 +58,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/news': typeof NewsRoute
-  '/admin/wishlists': typeof AdminWishlistsRoute
   '/games/kaalvan': typeof GamesKaalvanRoute
   '/games/two-the-sides': typeof GamesTwoTheSidesRoute
   '/games/': typeof GamesIndexRoute
@@ -74,7 +67,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/news': typeof NewsRoute
-  '/admin/wishlists': typeof AdminWishlistsRoute
   '/games/kaalvan': typeof GamesKaalvanRoute
   '/games/two-the-sides': typeof GamesTwoTheSidesRoute
   '/games': typeof GamesIndexRoute
@@ -85,7 +77,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/news': typeof NewsRoute
-  '/admin/wishlists': typeof AdminWishlistsRoute
   '/games/kaalvan': typeof GamesKaalvanRoute
   '/games/two-the-sides': typeof GamesTwoTheSidesRoute
   '/games/': typeof GamesIndexRoute
@@ -97,7 +88,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/news'
-    | '/admin/wishlists'
     | '/games/kaalvan'
     | '/games/two-the-sides'
     | '/games/'
@@ -107,7 +97,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/news'
-    | '/admin/wishlists'
     | '/games/kaalvan'
     | '/games/two-the-sides'
     | '/games'
@@ -117,7 +106,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/news'
-    | '/admin/wishlists'
     | '/games/kaalvan'
     | '/games/two-the-sides'
     | '/games/'
@@ -128,7 +116,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   NewsRoute: typeof NewsRoute
-  AdminWishlistsRoute: typeof AdminWishlistsRoute
   GamesKaalvanRoute: typeof GamesKaalvanRoute
   GamesTwoTheSidesRoute: typeof GamesTwoTheSidesRoute
   GamesIndexRoute: typeof GamesIndexRoute
@@ -164,13 +151,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/wishlists': {
-      id: '/admin/wishlists'
-      path: '/admin/wishlists'
-      fullPath: '/admin/wishlists'
-      preLoaderRoute: typeof AdminWishlistsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/games/': {
       id: '/games/'
       path: '/games'
@@ -200,7 +180,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   NewsRoute: NewsRoute,
-  AdminWishlistsRoute: AdminWishlistsRoute,
   GamesKaalvanRoute: GamesKaalvanRoute,
   GamesTwoTheSidesRoute: GamesTwoTheSidesRoute,
   GamesIndexRoute: GamesIndexRoute,

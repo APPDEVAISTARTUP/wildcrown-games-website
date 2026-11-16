@@ -4,7 +4,7 @@
 |---|---|
 | Studio email (enables contact form + footer link) | `src/data/site.ts` → `email` |
 | Social URLs — empty ones are hidden | `src/data/site.ts` → `socials` |
-| Wishlist store link (activates the wishlist buttons) | `src/data/games.ts` → `wishlist` |
+| KAALVAN download link (itch.io) | `src/data/games.ts` → `downloadUrl` |
 | Real KAALVAN screenshots / key art (set `placeholder: false`) | `src/assets/*`, `src/data/games.ts` → `gallery`, `cover` |
 | Final logo / wordmark | `src/components/site/Wordmark.tsx`, `public/favicon.png` |
 | Production domain (for absolute og:url / og:image) | route `head()` in `src/routes/*` |

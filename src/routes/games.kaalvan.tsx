@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getGame } from "@/data/games";
 import { Teaser } from "@/components/site/Teaser";
 import { Gallery } from "@/components/site/Gallery";
-import { WishlistButton, FollowBand } from "@/components/site/Wishlist";
+import { DownloadButton, DownloadBand } from "@/components/site/DownloadBand";
 import forest from "@/assets/kaalvan-forest.jpg";
 import chamber from "@/assets/kaalvan-chamber.jpg";
 
@@ -44,8 +44,7 @@ function KaalvanPage() {
             ))}
           </dl>
           <div className="rise mt-8 flex flex-wrap gap-4" style={{ animationDelay: "480ms" }}>
-            {g.downloadUrl && <a href={g.downloadUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Download on itch.io <Download className="h-4 w-4" /></a>}
-            <WishlistButton game={g} />
+            <DownloadButton game={g} label="Download on itch.io" />
             <a href="#teaser" className="btn-line">Watch teaser</a>
           </div>
         </div>
@@ -116,7 +115,7 @@ function KaalvanPage() {
         </div>
       </section>
 
-      <FollowBand game={g} />
+      <DownloadBand game={g} />
 
       <section className="border-t border-border py-16 md:py-20">
         <div className="container-x flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">

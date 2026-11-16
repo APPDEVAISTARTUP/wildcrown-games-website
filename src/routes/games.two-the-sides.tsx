@@ -58,6 +58,18 @@ function TwoTheSidesPage() {
         </div>
       </section>
 
+      <section aria-labelledby="key-art-title" className="pb-20 md:pb-28">
+        <div className="container-x">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
+            <h2 id="key-art-title" className="text-3xl font-extrabold md:text-4xl">Key art</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{game.coverLabel}</p>
+          </div>
+          <figure className="overflow-hidden border border-border">
+            <img src={game.cover} alt={game.coverAlt ?? ""} loading="lazy" width={1920} height={1080} className="aspect-video w-full object-cover" />
+          </figure>
+        </div>
+      </section>
+
       <section aria-label="Story themes" className="border-y border-border bg-ink py-16 md:py-24">
         <div className="container-x">
           <p className="eyebrow mb-8">At the heart of the story</p>
